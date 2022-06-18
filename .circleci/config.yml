@@ -1,0 +1,23 @@
+function run(result, nomeCliente) {
+
+    result = JSON.parse(result);
+    nomeCliente = nomeCliente;
+    
+    if ( result.resource.total == 0 ) { return "semcadastro"; } 
+
+    else if ( result.resource.total == 1 ){
+        for ( i = 0; i < result.resource.total; i++ ) {
+            if ( nomeCliente == result.resource.items[i]['name'] ) { return "ok"; } 
+            else { return "semcadastro"; }
+        }
+    }
+
+    else if ( result.resource.total >= 2 ){
+        
+        for ( i = 0; i <= result.resource.total; i++ ) {
+            if (i == result.resource.total) { return "semcadastro"; } 
+            else if ( nomeCliente == result.resource.items[i]['name'] ) { return "ok"; }
+            else if  ( nomeCliente != result.resource.items[i]['name'] ) { continue; }
+        }
+    }
+}
